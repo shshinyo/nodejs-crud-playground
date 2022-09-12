@@ -1,0 +1,253 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+		"title": "Swagger USER CRUD - OpenAPI 3.0",
+		"description": "This is a sample User server",
+		"version": "1.0.11"
+	},
+	"externalDocs": {
+		"description": "Find out more about Swagger",
+		"url": "http://swagger.io"
+	},
+	"tags": [
+		{
+			"name": "user",
+			"description": "Operations about user"
+		}
+	],
+	"paths": {
+		"/api/users": {
+			"get": {
+				"tags": [
+					"user"
+				],
+				"summary": "get users",
+				"description": "this api gets all users.",
+				"operationId": "getUsers",
+				"responses": {
+					"default": {
+						"description": "successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							},
+							"application/xml": {
+								"schema": {
+                                    "type":"array",
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+        "/api/users/add": {
+			"post": {
+				"tags": [
+					"user"
+				],
+				"summary": "add user",
+				"description": "this api add user .",
+				"operationId": "addUsers",
+                "requestBody": {
+					"description": "add a new user in the store",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/User"
+							}
+						}}
+                    },
+				"responses": {
+					"default": {
+						"description": "successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+        "/api/users/{id}": {
+			"put": {
+				"tags": [
+					"user"
+				],
+				"summary": "update user",
+				"description": "this api update user .",
+				"operationId": "updateUser",
+                "parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of user to update",
+						"required": true,
+						"schema": {
+							"type": "string"						}
+					}
+				],
+                "requestBody": {
+					"description": "update a  user in the store",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/User"
+							}
+						}}
+                    },
+				"responses": {
+					"default": {
+						"description": "successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				}
+			},
+            "delete": {
+				"tags": [
+					"user"
+				],
+				"summary": "delete user",
+				"description": "this api delete user .",
+				"operationId": "deleteUser",
+                "parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of user to delete",
+						"required": true,
+						"schema": {
+							"type": "string"						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				}
+			},
+            "get": {
+				"tags": [
+					"user"
+				],
+				"summary": "get user",
+				"description": "this api get a user .",
+				"operationId": "getUser",
+                "parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of user to get",
+						"required": true,
+						"schema": {
+							"type": "string"						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": "successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							},
+							"application/xml": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"User": {
+				"type": "object",
+				"properties": {
+					"firstName": {
+						"type": "string",
+						"example": "ibrahem"
+					},
+					"lastName": {
+						"type": "string",
+						"example": "Elshishiny"
+					}
+				},
+				"xml": {
+					"name": "user"
+				}
+			},
+			"ApiResponse": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"type": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"xml": {
+					"name": "##default"
+				}
+			}
+		},
+		"requestBodies": {
+			"UserArray": {
+				"description": "List of user object",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/components/schemas/User"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
